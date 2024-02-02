@@ -7,7 +7,7 @@ class Node {
     }
 }
 
-class SingleLinkedList {
+class SinglyLinkedList {
     Node head;
 
     void insertAtHead(int data) {
@@ -55,7 +55,7 @@ class SingleLinkedList {
     }
 
     public static void main(String[] args) {
-        SingleLinkedList list = new SingleLinkedList();
+        SinglyLinkedList list = new SinglyLinkedList();
         list.insertAtTail(1);
         list.insertAtTail(2);
         list.insertAtTail(3);
