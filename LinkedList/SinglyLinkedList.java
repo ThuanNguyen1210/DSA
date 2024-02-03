@@ -1,3 +1,5 @@
+import java.util.Optional;
+
 class Node {
     int data;
     Node next;
@@ -9,6 +11,10 @@ class Node {
 
 class SinglyLinkedList {
     Node head;
+
+    Node getHead() {
+        return this.head;
+    }
 
     void insertAtHead(int data) {
         Node newNode = new Node(data);
@@ -45,7 +51,43 @@ class SinglyLinkedList {
         newNode.next = cur;
     }
 
+    boolean search(int data) {
+        Node temp = head;
+        while (temp != null) {
+            if (temp.data == data) {
+                return true;
+            }
+            temp = temp.next;
+        }
+
+        return false;
+    }
+
+    boolean searchRecursive(int data, Node node) {
+        if (node == null) {
+            return false;
+        }
+
+        if (node.data == data) {
+            return true;
+        }
+
+        return searchRecursive(data, node.next);
+    }
+
+    void reverse() {
+        Node prev = null, next, curr = this.head;
+        while (curr != null) {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        this.head = prev;
+    }
+
     void print() {
+        System.out.print("List: ");
         Node temp = head;
         while (temp != null) {
             System.out.print(temp.data + " ");
@@ -62,5 +104,15 @@ class SinglyLinkedList {
         list.insertAtIndex(4, 1);
 
         list.print();
+
+        list.reverse();
+
+        list.print();
+
+        int searchElement = 3;
+        System.out.println(
+                String.format("Is exist %d in list: ", searchElement)
+                        + list.searchRecursive(searchElement, list.getHead()));
+
     }
 }
