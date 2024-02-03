@@ -1,5 +1,3 @@
-import java.util.Optional;
-
 class Node {
     int data;
     Node next;
