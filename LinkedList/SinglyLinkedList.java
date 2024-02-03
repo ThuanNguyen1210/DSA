@@ -73,6 +73,33 @@ class SinglyLinkedList {
         return searchRecursive(data, node.next);
     }
 
+    void removeElementAtPosition(int idx) {
+        if (this.head == null) {
+            return;
+        }
+
+        if (idx == 0) {
+            head = head.next;
+            return;
+        }
+
+
+        int tempIdx = 0;
+        Node tempNode = this.head;
+        Node prevNode = null;
+        while (tempNode != null && tempIdx != idx) {
+            prevNode = tempNode;
+            tempNode = tempNode.next;
+            tempIdx ++;
+        }
+        if (tempIdx != idx) {
+            return;
+        }
+
+        prevNode.next = tempNode.next;
+        tempNode.next = null;
+    }
+
     void reverse() {
         Node prev = null, next, curr = this.head;
         while (curr != null) {
@@ -96,21 +123,16 @@ class SinglyLinkedList {
 
     public static void main(String[] args) {
         SinglyLinkedList list = new SinglyLinkedList();
+        list.insertAtTail(0);
         list.insertAtTail(1);
         list.insertAtTail(2);
         list.insertAtTail(3);
-        list.insertAtIndex(4, 1);
+        list.insertAtTail(4);
+        list.insertAtTail(5);
+        list.insertAtTail(6);
+
+        list.removeElementAtPosition(3);
 
         list.print();
-
-        list.reverse();
-
-        list.print();
-
-        int searchElement = 3;
-        System.out.println(
-                String.format("Is exist %d in list: ", searchElement)
-                        + list.searchRecursive(searchElement, list.getHead()));
-
     }
 }
